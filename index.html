@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频解析器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        #videoUrl {
+            width: 300px; /* 调整输入框的宽度 */
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #lineSelector {
+            margin-top: 8px;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 8px 16px;
+            margin-top: 8px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <label for="videoUrl">视频URL:</label>
+    <br>
+    <input type="text" id="videoUrl" placeholder="输入视频URL">
+    <br>
+    <label for="lineSelector">选择解析线路:</label>
+    <br>
+    <select id="lineSelector">
+        <option value="https://jx.jsonplayer.com/player/?url=">线路一</option>
+        <option value="https://jx.xmflv.com/?url=">线路二</option>
+    </select>
+    <br>
+    <button onclick="parseAndPlay()">解析并播放</button>
+</div>
+
+<script>
+    function parseAndPlay() {
+        // 获取输入框中的视频URL
+        var videoUrl = document.getElementById("videoUrl").value;
+
+        // 获取选择框中的解析线路
+        var lineSelector = document.getElementById("lineSelector");
+        var selectedLine = lineSelector.options[lineSelector.selectedIndex].value;
+
+        // 构建解析链接
+        var parseUrl = selectedLine + encodeURIComponent(videoUrl);
+
+        // 使用 window.open 打开解析链接（在新标签页中）
+        window.open(parseUrl);
+    }
+</script>
+
+</body>
+</html>
